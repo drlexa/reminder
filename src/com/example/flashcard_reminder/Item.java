@@ -18,11 +18,11 @@ public class Item {
 	public void setDatetime(long datetime) {
 		this.datetime = datetime;
 	}
-	public Item(String title, String description) {
+	public Item(String title, String description, long datetime) {
         super();
         this.title = title;
         this.description = description;
-        this.datetime = new Date().getTime();
+        this.datetime = datetime;
     }
     // getters and setters...   
 	public String getTitle() {

@@ -28,7 +28,6 @@ public class Clicker implements View.OnClickListener {
 	
 	@Override public void onClick(View v) {
         // Perform action on click
-		Log.e("blah", "blah blah");
 		adapter.next_item();
 		context.setListAdapter(adapter);
     }

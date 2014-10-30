@@ -2,6 +2,7 @@ package com.example.flashcard_reminder;
  
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
  
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class MyAdapter extends ArrayAdapter<Item> {
             View rowView = inflater.inflate(R.layout.row, parent, false);
  
             // 3. Get the two text view from the rowView
-            TextView labelView = (TextView) rowView.findViewById(R.id.label);
+            TextView labelView = (TextView) rowView.findViewById(R.id.list_thousand);
             TextView valueView = (TextView) rowView.findViewById(R.id.value);
             TextView dateView = (TextView) rowView.findViewById(R.id.date);
  
@@ -49,8 +50,12 @@ public class MyAdapter extends ArrayAdapter<Item> {
         
         public void next_item(){
         	
+        	update_date_first_element();
         	Collections.rotate(itemsArrayList, -1);
         }
         
-        
+        public void update_date_first_element(){
+        	
+        	itemsArrayList.get(0).setDatetime(new Date().getTime());
+        }
 }

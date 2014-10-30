@@ -9,6 +9,7 @@
         android:targetSdkVersion="21" />
 
     <application
+        android:name=".AppContext"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -16,11 +17,19 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".ThousandActivity"
+            android:label="@string/title_activity_thousand" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".HundredActivity"
+            android:label="@string/title_activity_hundred" >
         </activity>
     </application>
 

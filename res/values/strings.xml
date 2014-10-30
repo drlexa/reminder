@@ -4,5 +4,7 @@
     <string name="app_name">flashcard_reminder</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_thousand">THousandActivity</string>
+    <string name="title_activity_hundred">HundredActivity</string>
 
 </resources>
