@@ -23,7 +23,7 @@ public class HundredActivity extends ListActivity {
 		lv = getListView();
 		
 		thousand = getIntent().getIntExtra(ThousandActivity.THOUSAND_ID, 0);
-	    Log.e("start", Integer.toString(thousand));
+	    Log.e("start HundredActivity", Integer.toString(thousand));
 	}
 
 	@Override

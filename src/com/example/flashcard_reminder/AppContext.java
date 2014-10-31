@@ -1,8 +1,11 @@
 package com.example.flashcard_reminder;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 import android.app.Application;
+import android.util.Log;
 
 public class AppContext extends Application {
 
@@ -11,11 +14,13 @@ public class AppContext extends Application {
 	private ArrayList<ArrayList<BundleOfCards>> hundred;
 	
 	private ArrayList<ArrayList<Word>> word;
+	
+	private WordDataHelper db;
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		
+		        
 		thousand = new ArrayList<BundleOfCards>();
 		
 		thousand.add(new BundleOfCards(0, "1-ая тысяча слов", new int[]{0, 0, 0, 0, 0, 0})); 
@@ -63,6 +68,8 @@ public class AppContext extends Application {
 		hundred.add(l1);
 		hundred.add(l2);
 		hundred.add(l3);
+		
+		Log.e("END hundred, thousand", "0");
 		/*  */
 		word = new ArrayList<ArrayList<Word>>();
 		fillFunc0();
@@ -95,8 +102,61 @@ public class AppContext extends Application {
 		fillFunc27();
 		fillFunc28();
 		fillFunc29();
+		
+		Log.e("END words", "0");
+		
+        db = new WordDataHelper(this);
+        Log.e("read word from DB", "0");
+        long[][] words_for_process = db.getWords();
+        Log.e("END select", "0");
+        for(int i = 0; i < 3000; i++){
+        	
+        	int cur_h = i / 100;
+        	int cur_w = i % 100;
+        	
+        	word.get(cur_h).get(cur_w).setUpdated(words_for_process[i][0]);
+        	word.get(cur_h).get(cur_w).setError(words_for_process[i][1]);
+        }
+        Log.e("END init", "0");
 	}
 
+	private static int[] error_to_timeinterval = new int[]{
+		0, 
+		1000 * 60 * 60 * 6, 
+		1000 * 60 * 60 * 2, 
+		1000 * 60 * 60, 
+		1000 * 60 * 20, 
+		1000 * 60 * 5, 
+		1000 * 60 * 1
+	};
+	public void prepareHundred(int hundred_index){
+		
+		long current_time = new Date().getTime();
+		ArrayList<Word> current_hundred = word.get(hundred_index);
+		
+		for (Word current_word : current_hundred) {
+			
+			current_word.setSorted(0);
+			
+			if(current_word.getError() == 0){
+				
+				continue;
+			}
+			
+			if(current_time - current_word.getUpdated() > error_to_timeinterval[(int)current_word.getError()]){
+					
+				current_word.setSorted(current_word.getError());
+			}
+		}
+		Collections.sort(current_hundred);
+	}
+	
+	public WordDataHelper getDB(){
+		
+		return this.db;
+	}
+	
+	
 	public ArrayList<BundleOfCards> getThousand() {
 		return thousand;
 	}

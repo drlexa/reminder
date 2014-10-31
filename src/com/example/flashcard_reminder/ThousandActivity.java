@@ -20,6 +20,7 @@ public class ThousandActivity extends ListActivity {
 		setContentView(R.layout.activity_thousand);
 		
 		lv = getListView();
+	    Log.e("start ThousandActivity", "");
 	}
 
 	 @Override
