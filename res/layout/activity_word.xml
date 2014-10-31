@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<TextView
+    android:id="@+id/word_text_english"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="this place for word"
+    android:textAppearance="@android:style/TextAppearance.Large" />
+
+<TextView
+    android:id="@+id/word_text_transcription"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/word_text_english"
+    android:text="transcription"
+    android:textAppearance="@android:style/TextAppearance.Large" />
+
+<TextView
+    android:id="@+id/word_text_translation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/word_text_transcription"
+    android:text="translation"
+    android:textAppearance="@android:style/TextAppearance.Large" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:padding="5dp">
+
+    <Button
+        android:id="@+id/do_not_know"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.40"
+        android:background="@color/Red"
+        android:text="HELP" />
+
+    <Button
+        android:id="@+id/know"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.40"
+        android:background="@color/Green"
+        android:text="NEXT" />
+
+</LinearLayout>
+</RelativeLayout>

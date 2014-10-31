@@ -31,6 +31,10 @@
             android:name=".HundredActivity"
             android:label="@string/title_activity_hundred" >
         </activity>
+        <activity
+            android:name=".WordActivity"
+            android:label="@string/title_activity_word" >
+        </activity>
     </application>
 
 </manifest>

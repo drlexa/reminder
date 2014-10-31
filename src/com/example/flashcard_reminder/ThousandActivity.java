@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 public class ThousandActivity extends ListActivity {
 
-	public static String HUNDRED_ID = "com.example.flashcard_reminder.HUNDRED_ID";
+	public static String THOUSAND_ID = "com.example.flashcard_reminder.THOUSAND_ID";
 	private ListView lv;
 	
 	@Override
@@ -25,10 +25,10 @@ public class ThousandActivity extends ListActivity {
 	 @Override
 	 public void onListItemClick(ListView l, View v, int position, long id) {
 		 BundleOfCards item = (BundleOfCards)lv.getItemAtPosition(position);
-	     Log.e("click", Integer.toString(item.getId()));
+	     Log.e("click_thousand", Integer.toString(item.getId()));
 	     
 	     Intent intent = new Intent(this, HundredActivity.class);
-	     intent.putExtra(HUNDRED_ID, item.getId());
+	     intent.putExtra(THOUSAND_ID, item.getId());
 	     startActivity(intent);
 	 }
 	
