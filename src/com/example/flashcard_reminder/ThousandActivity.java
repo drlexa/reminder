@@ -1,5 +1,7 @@
 package com.example.flashcard_reminder;
 
+import java.util.ArrayList;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,9 +57,29 @@ public class ThousandActivity extends ListActivity {
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-
+	    Log.e("start", "resume thousand");
+	    ArrayList<BundleOfCards> thousands = ((AppContext) getApplicationContext()).getThousand();
+	    for (BundleOfCards current_thousand : thousands) {
+	    	
+	    	current_thousand.getStat()[0] = current_thousand.getStat()[1] = current_thousand.getStat()[2] = 
+	    		current_thousand.getStat()[3] = current_thousand.getStat()[4] = current_thousand.getStat()[5] = 0;
+	    	
+	    	ArrayList<BundleOfCards> current_bunch_of_hundreds = ((AppContext) getApplicationContext()).getHundred(current_thousand.getId());
+	    	for (BundleOfCards current_hundred : current_bunch_of_hundreds) {
+	    		
+	    		((AppContext) getApplicationContext()).prepareHundred(current_hundred.getId());
+	    		
+	    		current_thousand.getStat()[0] += current_hundred.getStat()[0];
+	    		current_thousand.getStat()[1] += current_hundred.getStat()[1];
+	    		current_thousand.getStat()[2] += current_hundred.getStat()[2];
+	    		current_thousand.getStat()[3] += current_hundred.getStat()[3];
+	    		current_thousand.getStat()[4] += current_hundred.getStat()[4];
+	    		current_thousand.getStat()[5] += current_hundred.getStat()[5];
+	    	}
+	    }
+	    Log.e("end", "resume thousand");
         // 1. pass context and data to the custom adapter
-	    AdapterForBundleOfThousand adapter = new AdapterForBundleOfThousand(this, ((AppContext) getApplicationContext()).getThousand());
+	    AdapterForBundleOfHundred adapter = new AdapterForBundleOfHundred(this, thousands);
         //2. setListAdapter
         setListAdapter(adapter);
 	}
