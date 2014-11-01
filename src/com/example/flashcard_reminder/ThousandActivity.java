@@ -57,7 +57,7 @@ public class ThousandActivity extends ListActivity {
 	    super.onResume();  // Always call the superclass method first
 
         // 1. pass context and data to the custom adapter
-	    AdapterForBundle adapter = new AdapterForBundle(this, ((AppContext) getApplicationContext()).getThousand());
+	    AdapterForBundleOfThousand adapter = new AdapterForBundleOfThousand(this, ((AppContext) getApplicationContext()).getThousand());
         //2. setListAdapter
         setListAdapter(adapter);
 	}

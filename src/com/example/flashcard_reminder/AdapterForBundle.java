@@ -41,7 +41,14 @@ public class AdapterForBundle extends ArrayAdapter<BundleOfCards> {
 
 		// 4. Set the text for textView
 		labelView.setText(data.get(position).getName());
-		valueView.setText("");
+		valueView.setText(
+			":" + data.get(position).getStat()[0] + "\n" + 
+			":" + data.get(position).getStat()[1] + "\n" + 
+			":" + data.get(position).getStat()[2] + "\n" + 
+			":" + data.get(position).getStat()[3] + "\n" + 
+			":" + data.get(position).getStat()[4] + "\n" + 
+			":" + data.get(position).getStat()[5] + "\n"
+		);
 		dateView.setText("");
 		// 5. retrn rowView
 		return rowView;

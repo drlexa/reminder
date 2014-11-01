@@ -129,24 +129,64 @@ public class AppContext extends Application {
 		1000 * 60 * 5, 
 		1000 * 60 * 1
 	};
+	
 	public void prepareHundred(int hundred_index){
 		
 		long current_time = new Date().getTime();
 		ArrayList<Word> current_hundred = word.get(hundred_index);
-		
+		BundleOfCards current_bundle = hundred.get(hundred_index / 10).get(hundred_index % 10);
+		current_bundle.getStat()[0] = current_bundle.getStat()[1] = current_bundle.getStat()[2] = 
+			current_bundle.getStat()[3] = current_bundle.getStat()[4] = current_bundle.getStat()[5] = 0;
 		for (Word current_word : current_hundred) {
 			
 			current_word.setSorted(0);
 			
 			if(current_word.getError() == 0){
 				
+				if(current_time - current_word.getUpdated() < 1000 * 60 * 60 * 24){
+					
+					current_bundle.getStat()[0] += 1;
+					current_word.setColor(getResources().getColor(R.color.WordGreen));
+				}
+				else if(current_time - current_word.getUpdated() < 1000 * 60 * 60 * 24 * 3){
+					
+					current_bundle.getStat()[1] += 1;
+					current_word.setColor(getResources().getColor(R.color.WordLightGreen));
+				}
+				else if(current_time - current_word.getUpdated() < 1000 * 60 * 60 * 24 * 7){
+					
+					current_bundle.getStat()[2] += 1;
+					current_word.setColor(getResources().getColor(R.color.WordYellow));
+				}
+				else if(current_time - current_word.getUpdated() < 1000 * 60 * 60 * 24 * 15){
+					
+					current_bundle.getStat()[3] += 1;
+					current_word.setColor(getResources().getColor(R.color.WordOrange));
+				}
+				else if(current_time - current_word.getUpdated() < 1000 * 60 * 60 * 24 * 30){
+					
+					current_bundle.getStat()[4] += 1;
+					current_word.setColor(getResources().getColor(R.color.WordPink));
+				}
+				else {
+					
+					current_bundle.getStat()[5] += 1;
+					current_word.setColor(getResources().getColor(R.color.WordRed));
+				}
 				continue;
 			}
 			
 			if(current_time - current_word.getUpdated() > error_to_timeinterval[(int)current_word.getError()]){
-					
+				
 				current_word.setSorted(current_word.getError());
+				current_word.setColor(getResources().getColor(R.color.WordRed));
+				current_bundle.getStat()[5] += 1;
 			}
+			else {
+				
+				current_word.setColor(getResources().getColor(R.color.WordGreen));
+				current_bundle.getStat()[0] += 1;
+			} 
 		}
 		Collections.sort(current_hundred);
 	}

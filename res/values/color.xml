@@ -2,4 +2,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <color android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/color1" name="Red">#FF0000</color>
     <color android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/color2" name="Green">#00FF00</color>
+    <color name="WordRed">#CC0000</color>
+    <color name="WordPink">#FF4444</color>
+    <color name="WordOrange">#FF8800</color>
+	<color name="WordYellow">#FFBB33</color>
+	<color name="WordLightGreen">#99CC00</color>
+	<color name="WordGreen">#669900</color>
+	<color name="HundredListItemText">#000000</color>
+	<color name="HundredListItemBackground">#EEEEEE</color>
+	<color name="ThousandListItemText">#000000</color>
+	<color name="ThousandListItemBackground">#CCCCCC</color>
 </resources>

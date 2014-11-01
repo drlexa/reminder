@@ -19,14 +19,9 @@ public class WordActivity extends ActionBarActivity {
 
 	private int hundred;
 	private ArrayList<Word> words;
-	private TextView WordTextEnglish;
-	private TextView WordTextTranslation;
-	private TextView WordTextTranscription;
-	
-	private TextView DevID;
-	private TextView DevUpdated;
-	private TextView DevError;
-	private TextView DevSorted;
+	private TextView WordText;
+	private TextView WordDesc;
+	private TextView WordDebug;
 	
 	private static SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
 	@Override
@@ -39,14 +34,9 @@ public class WordActivity extends ActionBarActivity {
 	    
 	    words = ((AppContext) getApplicationContext()).getWordBundle(hundred);
 	    
-	    WordTextEnglish = (TextView)findViewById(R.id.word_text_english);
-	    WordTextTranslation = (TextView)findViewById(R.id.word_text_translation);
-	    WordTextTranscription = (TextView)findViewById(R.id.word_text_transcription);
-	    
-	    DevID = (TextView)findViewById(R.id.dev_id);
-	    DevUpdated = (TextView)findViewById(R.id.dev_updated);
-	    DevError = (TextView)findViewById(R.id.dev_error);
-	    DevSorted = (TextView)findViewById(R.id.dev_sorted);
+	    WordText = (TextView)findViewById(R.id.word_text);
+	    WordDesc = (TextView)findViewById(R.id.word_desc);
+	    WordDebug = (TextView)findViewById(R.id.word_debug);
 	    
         final Button do_not_know = (Button) findViewById(R.id.do_not_know);
         do_not_know.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +53,7 @@ public class WordActivity extends ActionBarActivity {
             	words.get(0).setUpdated(ct);
             	words.get(0).setError(6);
             	
-            	WordTextTranscription.setText(words.get(0).getTranscription());
-            	WordTextTranslation.setText(words.get(0).getRussian());
+            	WordDesc.setText(words.get(0).getTranscription() + " " + words.get(0).getRussian());
             }
         });
         
@@ -94,20 +83,21 @@ public class WordActivity extends ActionBarActivity {
             	draw_word();
             }
         });
-        
-        ((AppContext) getApplicationContext()).prepareHundred(this.hundred);
 	}
 
 	private void draw_word(){
 		
-		WordTextEnglish.setText(words.get(0).getEnglish());
-    	WordTextTranscription.setText("");
-    	WordTextTranslation.setText("");
+		WordText.setText(words.get(0).getEnglish());
+    	WordDesc.setText("");
     	
-    	DevID.setText("ID: " + words.get(0).getId());
-    	DevUpdated.setText("DATE: " + formatter.format(words.get(0).getUpdated()));
-    	DevError.setText("ERROR: " + words.get(0).getError());
-    	DevSorted.setText("SORTED: " + words.get(0).getSorted());
+    	WordDebug.setText(
+    		"id: " + words.get(0).getId() + "\n" +
+    		"last updated: " + formatter.format(words.get(0).getUpdated()) + "\n" +
+    		"error: " + words.get(0).getError() + "\n" +
+    		"sorted: " + words.get(0).getSorted() + "\n" +
+    		"color: " + Integer.toString(words.get(0).getColor(), 16) + "\n" +
+    		"hundred of words: " + hundred
+    	);
 	}
 	
 	@Override

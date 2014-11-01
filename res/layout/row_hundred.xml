@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/hundred_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/HundredListItemBackground"
+        android:paddingLeft="5dp"
+        android:textColor="@color/HundredListItemText"
+        android:textSize="30sp" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/hundred_item_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/WordGreen"
+                android:paddingLeft="5dp"
+                android:textColor="@color/HundredListItemText"
+                android:textSize="12sp" >
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/hundred_item_lightgreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/WordLightGreen"
+                android:paddingLeft="5dp"
+                android:textColor="@color/HundredListItemText"
+                android:textSize="12sp" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/hundred_item_yellow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/WordYellow"
+                android:paddingLeft="5dp"
+                android:textColor="@color/HundredListItemText"
+                android:textSize="12sp" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/hundred_item_orange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/WordOrange"
+                android:paddingLeft="5dp"
+                android:textColor="@color/HundredListItemText"
+                android:textSize="12sp" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/hundred_item_pink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/WordPink"
+                android:paddingLeft="5dp"
+                android:textColor="@color/HundredListItemText"
+                android:textSize="12sp" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/hundred_item_red"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/WordRed"
+                android:paddingLeft="5dp"
+                android:textColor="@color/HundredListItemText"
+                android:textSize="12sp" >
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -49,8 +49,13 @@ public class HundredActivity extends ListActivity {
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
 
+	    for(int i = thousand * 10; i <= thousand * 10 + 9; i++){
+	    	
+	    	Log.e("prepare hundred", i + "");
+	        ((AppContext) getApplicationContext()).prepareHundred(i);
+	    }
         // 1. pass context and data to the custom adapter
-	    AdapterForBundle adapter = new AdapterForBundle(this, ((AppContext) getApplicationContext()).getHundred(thousand));
+	    AdapterForBundleOfHundred adapter = new AdapterForBundleOfHundred(this, ((AppContext) getApplicationContext()).getHundred(thousand));
         //2. setListAdapter
         setListAdapter(adapter);
 	}

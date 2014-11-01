@@ -9,7 +9,14 @@ public class Word implements Comparable<Word> {
 	private long updated;
 	private long error;
 	private long sorted;
+	private int color;
 	
+	public int getColor() {
+		return color;
+	}
+	public void setColor(int color) {
+		this.color = color;
+	}
 	public long getSorted() {
 		return sorted;
 	}
