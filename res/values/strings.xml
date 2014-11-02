@@ -4,9 +4,9 @@
     <string name="app_name">flashcard_reminder</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_thousand">ThousandActivity</string>
+    <string name="title_activity_thousand">Выберите тысячу слов</string>
     <string name="title_activity_hundred">HundredActivity</string>
     <string name="title_activity_word">WordActivity</string>
-    <string name="button_know_word">Знаю слово</string>
+    <string name="button_know_word">Следующее</string>
     <string name="button_do_not_know_word">Помощь</string>
 </resources>

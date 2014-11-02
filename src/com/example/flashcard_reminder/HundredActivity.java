@@ -1,5 +1,7 @@
 package com.example.flashcard_reminder;
 
+import java.util.Date;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +25,8 @@ public class HundredActivity extends ListActivity {
 		lv = getListView();
 		
 		thousand = getIntent().getIntExtra(ThousandActivity.THOUSAND_ID, 0);
-	    Log.e("start HundredActivity", Integer.toString(thousand));
+	    
+	    this.setTitle(((AppContext) getApplicationContext()).getThousand().get(thousand).getName());
 	}
 
 	@Override
@@ -48,13 +51,14 @@ public class HundredActivity extends ListActivity {
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-	    Log.e("start", "resume hundred");
+	    long start_resume_hundred = new Date().getTime();
 	    for(int i = thousand * 10; i <= thousand * 10 + 9; i++){
 	    	
 	    	//Log.e("prepare hundred", i + "");
 	        ((AppContext) getApplicationContext()).prepareHundred(i);
 	    }
-	    Log.e("end", "resume hundred");
+	    long end_resume_hundred = new Date().getTime();
+	    Log.e("RESUME HUNDRED", (end_resume_hundred - start_resume_hundred) + "");
         // 1. pass context and data to the custom adapter
 	    AdapterForBundleOfHundred adapter = new AdapterForBundleOfHundred(this, ((AppContext) getApplicationContext()).getHundred(thousand));
         //2. setListAdapter
@@ -64,7 +68,6 @@ public class HundredActivity extends ListActivity {
 	 @Override
 	 public void onListItemClick(ListView l, View v, int position, long id) {
 		 BundleOfCards item = (BundleOfCards)lv.getItemAtPosition(position);
-	     Log.e("click_hundred", Integer.toString(item.getId()));
 	     
 	     Intent intent = new Intent(this, WordActivity.class);
 	     intent.putExtra(HUNDRED_ID, item.getId());

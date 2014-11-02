@@ -69,8 +69,8 @@ public class AppContext extends Application {
 		hundred.add(l2);
 		hundred.add(l3);
 		
-		Log.e("END hundred, thousand", "0");
 		/*  */
+		long start_fill_word = new Date().getTime();
 		word = new ArrayList<ArrayList<Word>>();
 		fillFunc0();
 		fillFunc1();
@@ -102,13 +102,12 @@ public class AppContext extends Application {
 		fillFunc27();
 		fillFunc28();
 		fillFunc29();
-		
-		Log.e("END words", "0");
+		long end_fill_word = new Date().getTime();
+		Log.e("FILL WORD", (end_fill_word - start_fill_word) + "");
 		
         db = new WordDataHelper(this);
-        Log.e("read word from DB", "0");
         long[][] words_for_process = db.getWords();
-        Log.e("END select", "0");
+		long start_loop_init = new Date().getTime();
         for(int i = 0; i < 3000; i++){
         	
         	int cur_h = i / 100;
@@ -117,7 +116,8 @@ public class AppContext extends Application {
         	word.get(cur_h).get(cur_w).setUpdated(words_for_process[i][0]);
         	word.get(cur_h).get(cur_w).setError(words_for_process[i][1]);
         }
-        Log.e("END init", "0");
+        long end_loop_init = new Date().getTime();
+        Log.e("LOOP INIT", (end_loop_init - start_loop_init) + "");
 	}
 
 	private static int[] error_to_timeinterval = new int[]{

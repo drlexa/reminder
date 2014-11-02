@@ -18,13 +18,80 @@
         android:id="@+id/word_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.10"
+        android:layout_weight="0.125"
         android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.20"
+        android:layout_weight="0.025"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/hundred_item_green_inner_word"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/WordGreen"
+            android:paddingLeft="5dp"
+            android:textColor="@color/HundredListItemText"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/hundred_item_lightgreen_inner_word"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/WordLightGreen"
+            android:paddingLeft="5dp"
+            android:textColor="@color/HundredListItemText"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/hundred_item_yellow_inner_word"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/WordYellow"
+            android:paddingLeft="5dp"
+            android:textColor="@color/HundredListItemText"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/hundred_item_orange_inner_word"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/WordOrange"
+            android:paddingLeft="5dp"
+            android:textColor="@color/HundredListItemText"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/hundred_item_pink_inner_word"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/WordPink"
+            android:paddingLeft="5dp"
+            android:textColor="@color/HundredListItemText"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/hundred_item_red_inner_word"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/WordRed"
+            android:paddingLeft="5dp"
+            android:textColor="@color/HundredListItemText"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
         android:orientation="horizontal" >
 
         <TextView

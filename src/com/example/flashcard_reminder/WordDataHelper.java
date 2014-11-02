@@ -1,8 +1,6 @@
 package com.example.flashcard_reminder;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -28,7 +26,7 @@ public class WordDataHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		Log.e("db", TABLE_CREATE_WORD);
+		long start_create_db = new Date().getTime();
 		db.execSQL(TABLE_CREATE_WORD);
 		String current_time = String.valueOf(new Date().getTime());
 		for(int i = 1; i <= 3000; i++){
@@ -38,7 +36,8 @@ public class WordDataHelper extends SQLiteOpenHelper {
 				" values (" + String.valueOf(i) + ", " + current_time + ", 0) "
 			);
 		}
-		Log.e("END insert", "0");
+		long end_create_db = new Date().getTime();
+		Log.e("CREATE DB", (end_create_db - start_create_db) + "");
 	}
 
 	@Override
@@ -51,6 +50,7 @@ public class WordDataHelper extends SQLiteOpenHelper {
 		long[][] result = new long[3000][];
 		int i = 0;
 		Cursor cur = this.getReadableDatabase().rawQuery("select repeated, must_be_repeated from " + TABLE_NAME_WORD + " order by _id", null);
+		long start_cursor = new Date().getTime();
 		if (cur.moveToFirst()) {
 			do {
 				result[i] = new long[2];
@@ -60,7 +60,8 @@ public class WordDataHelper extends SQLiteOpenHelper {
 			} while (cur.moveToNext());
 		}
 		cur.close();
-
+		long end_cursor = new Date().getTime();
+		Log.e("CURSOR DB", (end_cursor - start_cursor) + "");
 		return result;
 	}
 }

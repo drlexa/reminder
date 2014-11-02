@@ -23,6 +23,13 @@ public class WordActivity extends ActionBarActivity {
 	private TextView WordDesc;
 	private TextView WordDebug;
 	
+	private TextView WordStatRed;
+	private TextView WordStatPink;
+	private TextView WordStatOrange;
+	private TextView WordStatYellow;
+	private TextView WordStatLightGreen;
+	private TextView WordStatGreen;
+	
 	private static SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +37,21 @@ public class WordActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_word);
 		
 		hundred = getIntent().getIntExtra(HundredActivity.HUNDRED_ID, 0);
-	    Log.e("start WordActivity", Integer.toString(hundred));
+	    
+	    this.setTitle(((AppContext) getApplicationContext()).getHundred(hundred / 10).get(hundred % 10).getName());
 	    
 	    words = ((AppContext) getApplicationContext()).getWordBundle(hundred);
 	    
 	    WordText = (TextView)findViewById(R.id.word_text);
 	    WordDesc = (TextView)findViewById(R.id.word_desc);
 	    WordDebug = (TextView)findViewById(R.id.word_debug);
+	    
+	    WordStatRed = (TextView)findViewById(R.id.hundred_item_red_inner_word);
+	    WordStatPink = (TextView)findViewById(R.id.hundred_item_pink_inner_word);
+	    WordStatOrange = (TextView)findViewById(R.id.hundred_item_orange_inner_word);
+	    WordStatYellow = (TextView)findViewById(R.id.hundred_item_yellow_inner_word);
+	    WordStatLightGreen = (TextView)findViewById(R.id.hundred_item_lightgreen_inner_word);
+	    WordStatGreen = (TextView)findViewById(R.id.hundred_item_green_inner_word);
 	    
         final Button do_not_know = (Button) findViewById(R.id.do_not_know);
         do_not_know.setOnClickListener(new View.OnClickListener() {
@@ -79,13 +94,14 @@ public class WordActivity extends ActionBarActivity {
         			words.get(0).setError(num_error - 1);
         		}
             	
-            	Collections.rotate(words, -1);
             	draw_word();
             }
         });
 	}
 
 	private void draw_word(){
+		
+		((AppContext) getApplicationContext()).prepareHundred(hundred);
 		
 		WordText.setText(words.get(0).getEnglish());
     	WordDesc.setText("");
@@ -98,6 +114,14 @@ public class WordActivity extends ActionBarActivity {
     		"color: " + Integer.toString(words.get(0).getColor(), 16) + "\n" +
     		"hundred of words: " + hundred
     	);
+    	
+    	BundleOfCards current_bundle = ((AppContext) getApplicationContext()).getHundred(hundred / 10).get(hundred % 10);
+    	WordStatRed.setText(current_bundle.getStat()[5] + "");
+    	WordStatPink.setText(current_bundle.getStat()[4] + "");
+    	WordStatOrange.setText(current_bundle.getStat()[3] + "");
+    	WordStatYellow.setText(current_bundle.getStat()[2] + "");
+    	WordStatLightGreen.setText(current_bundle.getStat()[1] + "");
+    	WordStatGreen.setText(current_bundle.getStat()[0] + "");
 	}
 	
 	@Override
@@ -122,6 +146,9 @@ public class WordActivity extends ActionBarActivity {
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
+	    long start_resume_word = new Date().getTime();
 	    draw_word();
+	    long end_resume_word = new Date().getTime();
+	    Log.e("RESUME WORD", (end_resume_word - start_resume_word) + "");
 	}
 }
