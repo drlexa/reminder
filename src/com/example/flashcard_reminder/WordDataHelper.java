@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 public class WordDataHelper extends SQLiteOpenHelper {
@@ -20,8 +21,12 @@ public class WordDataHelper extends SQLiteOpenHelper {
 		"must_be_repeated INTEGER " + 
 		");";
 	
+	private Context context;
+	
 	WordDataHelper(Context context) {
 		super(context, DB_NAME, null, DATABASE_VERSION);
+		
+		this.context = context;
 	}
 
 	@Override
@@ -29,13 +34,18 @@ public class WordDataHelper extends SQLiteOpenHelper {
 		long start_create_db = new Date().getTime();
 		db.execSQL(TABLE_CREATE_WORD);
 		String current_time = String.valueOf(new Date().getTime());
-		for(int i = 1; i <= 3000; i++){
+		SQLiteStatement insert = db.compileStatement(
+			"insert into " + TABLE_NAME_WORD + " (_id, repeated, must_be_repeated) " + 
+			" values (?, " + current_time + ", 0) "
+		);
+		db.beginTransaction();
+		for(int i = 1; i <= ((AppContext) context.getApplicationContext()).NUMBER_OF_WORD; i++){
 			
-			db.execSQL(
-				"insert into " + TABLE_NAME_WORD + " (_id, repeated, must_be_repeated) " + 
-				" values (" + String.valueOf(i) + ", " + current_time + ", 0) "
-			);
+			insert.bindLong(1, i);
+			insert.execute();
 		}
+		db.setTransactionSuccessful();	
+		db.endTransaction();
 		long end_create_db = new Date().getTime();
 		Log.e("CREATE DB", (end_create_db - start_create_db) + "");
 	}
@@ -47,7 +57,7 @@ public class WordDataHelper extends SQLiteOpenHelper {
 	
 	public long[][] getWords() {
 
-		long[][] result = new long[3000][];
+		long[][] result = new long[((AppContext) context.getApplicationContext()).NUMBER_OF_WORD][];
 		int i = 0;
 		Cursor cur = this.getReadableDatabase().rawQuery("select repeated, must_be_repeated from " + TABLE_NAME_WORD + " order by _id", null);
 		long start_cursor = new Date().getTime();

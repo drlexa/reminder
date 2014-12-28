@@ -68,7 +68,7 @@ public class WordActivity extends ActionBarActivity {
             	words.get(0).setUpdated(ct);
             	words.get(0).setError(6);
             	
-            	WordDesc.setText(words.get(0).getTranscription() + " " + words.get(0).getRussian());
+            	WordDesc.setText("[" + words.get(0).getTranscription() + "] " + words.get(0).getRussian());
             }
         });
         
